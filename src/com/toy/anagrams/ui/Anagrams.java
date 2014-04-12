@@ -81,6 +81,7 @@ public class Anagrams extends JFrame {
     /** Creates new form Anagrams */
     public Anagrams() {
         wordLibrary = WordLibrary.getDefault();
+        wordLibrary.setLevel(3);
         
         initComponents();
         getRootPane().setDefaultButton(guessButton);

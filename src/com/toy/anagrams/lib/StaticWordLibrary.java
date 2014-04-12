@@ -31,12 +31,18 @@
 
 package com.toy.anagrams.lib;
 
+import java.util.Random;
+
 /**
  * Implementation of the logic for the Anagram Game application.
  */
 final class StaticWordLibrary extends WordLibrary {
 
     private static final String[] WORD_LIST = {
+        "じょうほうかがくか",
+        "つだうめこ",
+        "つだじゅくだいがく",
+        "ちゅうおうせん",
         "abstraction",
         "ambiguous",
         "arithmetic",
@@ -82,7 +88,7 @@ final class StaticWordLibrary extends WordLibrary {
         "vertex",
         "unsigned",
         "traditional"};
-
+/*
     private static final String[] SCRAMBLED_WORD_LIST = {
         "batsartcoin",
         "maibuguos",
@@ -130,7 +136,7 @@ final class StaticWordLibrary extends WordLibrary {
         "nuisngde",
         "rtdatioialn"
     };
-    
+*/    
     final static WordLibrary DEFAULT = new StaticWordLibrary();
 
     /**
@@ -154,7 +160,8 @@ final class StaticWordLibrary extends WordLibrary {
      * @return word at that index in its scrambled form
      */
     public String getScrambledWord(int idx) {
-        return SCRAMBLED_WORD_LIST[idx];
+        int swapCount = getLevel();
+        return makeAnagram(WORD_LIST[idx], swapCount);
     }
 
     /**
@@ -174,5 +181,20 @@ final class StaticWordLibrary extends WordLibrary {
     public boolean isCorrect(int idx, String userGuess) {
         return userGuess.equals(getWord(idx));
     }
-
+    static Random random = new Random();
+    private String makeAnagram(String s, int swapCount) {
+        int len = s.length();
+        char[] cs = s.toCharArray();
+        for (int n = 0; n < swapCount; n++) {
+            int i = random.nextInt(len);
+            int j = random.nextInt(len);
+            swap(cs, i, j);
+        }
+        return new String(cs);
+    }
+    private void swap(char[] c, int i, int j) {
+        char tmp = c[i];
+        c[i] = c[j];
+        c[j] = tmp;
+    }
 }
