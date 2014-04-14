@@ -35,6 +35,13 @@ package com.toy.anagrams.lib;
  * Interface defining logic for the Anagram Game application.
  */
 public abstract class WordLibrary {
+    private int level = 0;
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    public int getLevel() {
+        return level;
+    }
     /**
      * Constructor for subclasses.
      */
